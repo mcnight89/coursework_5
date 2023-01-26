@@ -25,7 +25,7 @@ def menu_page():
 def start_fight():
     # TODO выполняем функцию start_game экземпляра класса арена и передаем ему необходимые аргументы
     # TODO рендерим экран боя (шаблон fight.html)
-    arena.start_game(player=heroes["player"], enemy=heroes["enemy"])
+    arena.start_game(player=heroes['player'], enemy=heroes['enemy'])
     return render_template("fight.html", heroes=heroes)
 
 
@@ -90,7 +90,7 @@ def choose_hero():
             'armors': armors,
             'classes': unit_classes,
         }
-        return render_template("choose-hero.html", result=result)
+        return render_template("hero_choosing.html", result=result)
     if request.method == 'POST':
         name = request.form['name']
         weapon_name = request.form['weapon']
@@ -120,7 +120,7 @@ def choose_enemy():
             'armors': armors,
             'classes': unit_classes,
         }
-        return render_template("choose-hero.html", result=result)
+        return render_template("hero_choosing.html", result=result)
     if request.method == 'POST':
         name = request.form['name']
         weapon_name = request.form['weapon']

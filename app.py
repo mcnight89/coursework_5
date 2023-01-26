@@ -36,7 +36,7 @@ def hit():
     # TODO если игра идет - вызываем метод player.hit() экземпляра класса арены
     # TODO если игра не идет - пропускаем срабатывание метода (простот рендерим шаблон с текущими данными)
     if arena.game_is_running:
-        result = arena.player.hit()
+        result = arena.player_hit()
     else:
         result = arena.battle_result
 
@@ -48,7 +48,7 @@ def use_skill():
     # TODO кнопка использования скилла
     # TODO логика пркатикчески идентична предыдущему эндпоинту
     if arena.game_is_running:
-        result = arena.player.use_skill()
+        result = arena.player_use_skill()
     else:
         result = arena.battle_result
 
@@ -99,7 +99,7 @@ def choose_hero():
         player = PlayerUnit(name=name, unit_class=unit_classes.get(unit_class))
         player.equip_weapon(Equipment().get_weapon(weapon_name))
         player.equip_armor(Equipment().get_armor(armor_name))
-        heroes["player"] = player
+        heroes['player'] = player
 
         return redirect(url_for('choose_enemy'))
 
@@ -126,10 +126,10 @@ def choose_enemy():
         weapon_name = request.form['weapon']
         armor_name = request.form['armor']
         unit_class = request.form['unit_class']
-        player = EnemyUnit(name=name, unit_class=unit_classes.get(unit_class))
-        player.equip_weapon(Equipment().get_weapon(weapon_name))
-        player.equip_armor(Equipment().get_armor(armor_name))
-        heroes["player"] = player
+        enemy = EnemyUnit(name=name, unit_class=unit_classes.get(unit_class))
+        enemy.equip_weapon(Equipment().get_weapon(weapon_name))
+        enemy.equip_armor(Equipment().get_armor(armor_name))
+        heroes['enemy'] = enemy
 
         return redirect(url_for('start_fight'))
 
